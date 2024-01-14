@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Your Christmas Message to Santa</title>
+    <style>
+        body {
+            background-image: url('https://i.ytimg.com/vi/U33p7Oiwd5E/maxresdefault.jpg'); /* Remplacez 'lien_vers_votre_image.jpg' par le chemin vers votre image de fond */
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #800020; /* Rouge bordeaux */
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            text-align: center;
+            color: white;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #228B22;
+            color: #800020;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Submit Your Christmas Message to Santa</h1>
+        <form method="post" action="{% url 'submit_message' %}">
+            {% csrf_token %}
+            <label for="sender_name">First Name:</label>
+            <input type="text" name="sender_name" required><br>
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" required><br>
+            <label for="city">City of Residence:</label>
+            <input type="text" name="city" required><br>
+            <label for="gift_list">Gift List (up to 5 gifts, separated by commas):</label>
+            <textarea name="gift_list" required></textarea><br>
+            <label for="kindness_level">Kindness Level (1-10):</label>
+            <input type="number" name="kindness_level" min="1" max="10" required><br>
+            <label for="age">Your Age:</label>
+            <input type="number" name="age" required><br>
+            <label for="has_cavities">Do you have cavities?</label>
+            <input type="checkbox" name="has_cavities"><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

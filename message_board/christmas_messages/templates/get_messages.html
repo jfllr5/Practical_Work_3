@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christmas Messages to Santa</title>
+    <style>
+        body {
+            background-color: #800020; /* Rouge bordeaux */
+            color: rgb(12, 10, 10);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .messages-container {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .message-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .message-item {
+            background-color: #FFFFFF; /* Blanc */
+            border: 1px solid #191970; /* Bleu marine */
+            border-radius: 10px;
+            margin: 10px;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .delete-button {
+            background-color: #800020; /* Rouge bordeaux */
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="messages-container">
+        <h1>Latest Christmas Messages to Santa</h1>
+        <ul class="message-list">
+            {% for message in messages %}
+                <li class="message-item">
+                    <strong style="color: #191970;">{{ message.sender_name }} {{ message.last_name }}</strong> says: <br>
+                    Gift List: {{ message.gift_list }} <br>
+                    Kindness Level: {{ message.kindness_level }} <br>
+                    Age: {{ message.age }} <br>
+                    {% if message.has_cavities %}Has Cavities{% else %}No Cavities{% endif %} <br>
+                    City: {{ message.city }} <br>
+                    Sent on: {{ message.timestamp }} <br>
+                    <form method="post" action="{% url 'delete_message' message.id %}">
+                        {% csrf_token %}
+                        <button class="delete-button" type="submit">Delete</button>
+                    </form>
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
