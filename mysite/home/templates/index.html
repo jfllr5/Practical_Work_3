@@ -1,0 +1,107 @@
+<html lang="en"> <!-- Opening tag for HTML, lang attribute set to "en" (English) -->
+
+<head>
+  <!-- Head section containing metadata and links to external resources -->
+  <meta charset="UTF-8"> <!-- Defines the character encoding -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Sets initial view and scale for mobile devices -->
+  <title>Animated Greetings</title> <!-- Defines the page title -->
+
+  <!-- Embedded CSS styles -->
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: url('https://img.radio-canada.ca/2015/12/10/1250x703/151210_em28y_hiver-fetes-noel-neige-froid_sn1250.jpg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      animation: colorChange 10s infinite, scaleText 3s infinite alternate;
+    }
+
+    p {
+      color: rgb(231, 27, 180);
+      font-size: 60px;
+      text-align: center;
+      animation: colorChange 10s infinite, scaleText 3s infinite alternate;
+    }
+
+    @keyframes colorChange {
+      0% {
+        color: rgb(250, 248, 249);
+      }
+      25% {
+        color: #ff0000; /* Red */
+      }
+      50% {
+        color: #228B22; /* Dark Green (forest green) */
+      }
+      75% {
+        color: #191970; /* Midnight Blue */
+      }
+      100% {
+        color: #2F4F4F; /* Dark Slate Gray */
+      }
+    }
+
+    @keyframes scaleText {
+      from {
+        transform: scale(1);
+      }
+      to {
+        transform: scale(1.1);
+      }
+    }
+
+    /* Falling snow effect */
+    .snowflake {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      animation: fall 5s linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-100vh);
+      }
+      100% {
+        transform: translateY(100vh);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Body section of the page -->
+  <p>Merry Christmas!!!</p> <!-- Paragraph displaying the message "Merry Christmas!!!" -->
+
+  <!-- Adding snowflakes with JavaScript -->
+  <script>
+    // Generate 200 snowflakes
+    for (let i = 0; i < 200; i++) {
+      createSnowflake();
+    }
+
+    function createSnowflake() {
+      const snowflake = document.createElement('div');
+      snowflake.className = 'snowflake';
+      document.body.appendChild(snowflake);
+
+      // Random position at the top of the image
+      const top = Math.random() * -100; // Starts above the image
+      const left = Math.random() * window.innerWidth;
+      const animationDuration = Math.random() * 5 + 3; // Animation duration between 3 and 8 seconds
+
+      snowflake.style.top = `${top}px`;
+      snowflake.style.left = `${left}px`;
+      snowflake.style.animationDuration = `${animationDuration}s`;
+    }
+  </script>
+</body>
+
+</html>
