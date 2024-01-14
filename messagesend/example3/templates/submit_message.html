@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Message</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: url('https://i.pinimg.com/originals/b4/a0/00/b4a000cdd7e39ca3dd3d2c6bb09872d0.jpg') no-repeat fixed center center;
+            background-size: cover;
+        }
+
+        .center-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: black; /* Texte en noir */
+        }
+
+        .send-button {
+            background-color: hotpink; /* Couleur rose flashy */
+            color: black; /* Texte en noir */
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="center-content">
+        <h2>Submit a Message</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="send-button" type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
